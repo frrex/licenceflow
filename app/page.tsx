@@ -40,11 +40,13 @@ export default function Home(){
   const [remindersOpen,setRemindersOpen]=useState(false);
   const [importMessage,setImportMessage]=useState("");
   const [darkMode,setDarkMode]=useState(false);
+  const [headerScrolled,setHeaderScrolled]=useState(false);
   const searchRef=useRef<HTMLInputElement>(null);
 
   useEffect(()=>{fetch("/api/licenses").then(r=>r.ok?r.json():Promise.reject()).then(({licenses:rows})=>{if(rows.length)setLicenses(rows)}).catch(()=>{})},[]);
   useEffect(()=>{const saved=localStorage.getItem("licenceflow-theme");setDarkMode(saved?saved==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches)},[]);
   useEffect(()=>{const focusSearch=(event:KeyboardEvent)=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();searchRef.current?.focus()}};window.addEventListener("keydown",focusSearch);return()=>window.removeEventListener("keydown",focusSearch)},[]);
+  useEffect(()=>{const updateHeader=()=>setHeaderScrolled(window.scrollY>12);updateHeader();window.addEventListener("scroll",updateHeader,{passive:true});return()=>window.removeEventListener("scroll",updateHeader)},[]);
 
   const currentLicenses=useMemo(()=>licenses.filter(l=>!l.archived),[licenses]);
   const archivedLicenses=useMemo(()=>licenses.filter(l=>l.archived),[licenses]);
@@ -111,7 +113,7 @@ export default function Home(){
 
   return <div className={`app-shell ${darkMode?"dark":""}`}>
     <main>
-      <header className="dashboard-header">
+      <header className={`dashboard-header ${headerScrolled?"is-scrolled":""}`}>
         <div className="top-brand"><span className="brand-mark"><i/><i/></span><span><b>LicenceFlow</b><small>mehmet</small></span></div>
         <nav className="header-tabs" aria-label="Dashboard bölümleri"><a href="#overview">Özet</a><a href="#renewals">Yenilemeler</a><a href="#costs">Maliyet</a><a href="#licenses">Lisanslar</a></nav>
         <label className="global-search"><span>⌕</span><input ref={searchRef} value={query} onChange={e=>setQuery(e.target.value)} placeholder="Lisanslarda ara..."/></label>

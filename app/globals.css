@@ -74,6 +74,15 @@ button {
   gap: 24px;
   background: rgba(255, 255, 255, 0.68);
   border-bottom: 1px solid rgba(226, 227, 237, 0.9);
+  backdrop-filter: blur(18px);
+  transition: background-color 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.dashboard-header.is-scrolled {
+  background: #ffffff;
+  border-bottom-color: #e2e3ed;
+  box-shadow: 0 10px 28px rgba(42, 40, 57, 0.1);
+  backdrop-filter: none;
 }
 
 .top-brand {
@@ -1303,6 +1312,12 @@ td small {
 .app-shell.dark .dashboard-header {
   background: rgba(37, 37, 44, 0.9);
   border-color: #363640;
+}
+
+.app-shell.dark .dashboard-header.is-scrolled {
+  background: #25252c;
+  border-color: #3b3b47;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
 }
 
 .app-shell.dark .header-tabs a {
