@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   const h=await headers(), host=h.get("x-forwarded-host")||h.get("host")||"localhost:3000", protocol=h.get("x-forwarded-proto")||"http", base=new URL(`${protocol}://${host}`);
   const title="LicenceFlow — Lisans ve Abonelik Takibi", description="Şirketinizin yazılım lisanslarını, yenilemelerini ve maliyetlerini tek yerden yönetin.";
-  return { metadataBase:base,title,description,icons:{icon:"/favicon.svg",shortcut:"/favicon.svg"},openGraph:{title,description,images:[{url:"/og.png",width:1536,height:1024,alt:"LicenceFlow lisans takip dashboard'u"}]},twitter:{card:"summary_large_image",title,description,images:["/og.png"]} };
+  return { metadataBase:base,title,description,icons:{icon:[{url:"/licenceflow-mark-v2.svg",type:"image/svg+xml"}],shortcut:"/licenceflow-mark-v2.svg",apple:"/licenceflow-mark-v2.svg"},openGraph:{title,description,images:[{url:"/og.png",width:1536,height:1024,alt:"LicenceFlow lisans takip dashboard'u"}]},twitter:{card:"summary_large_image",title,description,images:["/og.png"]} };
 }
 
 export default function RootLayout({

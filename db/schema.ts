@@ -8,3 +8,11 @@ export const licenses = sqliteTable("licenses", {
   archived: integer("archived", { mode: "boolean" }).notNull().default(false),
   createdAt: text("created_at").notNull(), updatedAt: text("updated_at").notNull(),
 });
+
+export const importLogs = sqliteTable("import_logs", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  fileName: text("file_name").notNull(),
+  importedCount: integer("imported_count").notNull(),
+  products: text("products").notNull().default("[]"),
+  createdAt: text("created_at").notNull(),
+});
