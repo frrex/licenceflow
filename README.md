@@ -2,6 +2,11 @@
 
 LicenceFlow, şirket içinde kullanılan yazılım lisanslarını ve abonelikleri merkezi bir panelden takip etmek için geliştirilmiş Türkçe bir web uygulamasıdır.
 
+Bu repo iki bağımsız arayüz içerir:
+
+- Ana lisans dashboard’u: repo kök dizini
+- Auth ekranı: `auth-screen/` klasörü
+
 ## Özellikler
 
 - Lisans ekleme, düzenleme, arşivleme ve silme
@@ -43,6 +48,22 @@ Dashboard varsayılan olarak aşağıdaki adreste açılır:
 http://localhost:3000
 ```
 
+### Auth Ekranını Çalıştırma
+
+Auth ekranı dashboard’a bağlı değildir ve ayrı bir Vite projesi olarak çalışır:
+
+```bash
+cd auth-screen
+npm install
+npm run dev
+```
+
+Auth ekranı aşağıdaki adreste açılır:
+
+```text
+http://localhost:8000
+```
+
 Üretim derlemesini kontrol etmek için:
 
 ```bash
@@ -79,4 +100,5 @@ Tarih alanları gerçek Excel tarih hücrelerini ve yaygın Türkçe tarih biçi
 
 - Uygulamada kimlik doğrulama bulunmaz.
 - Tema tercihi tarayıcıda saklanır.
-- Ayrı auth ekranı yerel geliştirme amaçlıdır ve bu GitHub deposuna dahil edilmez.
+- Auth ekranı `auth-screen/` klasöründe bulunur ve dashboard’dan bağımsız çalışır.
+- Auth ekranı henüz gerçek bir kimlik doğrulama servisine bağlı değildir; yalnızca arayüz prototipidir.
